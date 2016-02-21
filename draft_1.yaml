@@ -1,0 +1,165 @@
+# Example YAML to get you started quickly.
+# Be aware that YAML has indentation based scoping.
+# Code completion support is available so start typing for available options.
+swagger: '2.0'
+
+# This is your document metadata
+info:
+  version: "0.0.0"
+  title: EHelse Referansekatalog API
+
+
+
+################################################################################
+#                  Host, Base Path, Schemes and Content Types                  #
+################################################################################
+host: 37.139.13.117
+basePath: /dev/index.php/v1
+schemes:
+  - http
+produces:
+  - application/json
+consumes:
+  - application/json
+  
+  
+
+  
+parameters:
+  standardId:
+    name: standardId
+    in: path
+    description: ID of pet that needs to be fetched
+    required: true
+    type: integer
+
+paths:
+  /standards/:
+    get:
+      description: Gets `Standard` objects.
+      responses:
+        200:
+          description: OK
+          schema:
+            title: ArrayOfStandards
+            type: array
+            items:
+              title: Standard
+              type: object
+              properties:
+                id:
+                  type: integer
+                timestamp:
+                  type: string
+                  format: dateTime
+                title:
+                  type: string
+                description:
+                  type: string
+                is_in_catalog:
+                  type: boolean
+                sequence:
+                  type: integer
+                topic_id:
+                  type: integer
+    post:
+      description: Creates a new 'Standard' object.
+      responses: 
+        201:
+          description: Created
+          schema:
+            title: Standard
+            type: object
+            properties:
+                id:
+                  type: integer
+                timestamp:
+                  type: string
+                  format: dateTime
+                title:
+                  type: string
+                description:
+                  type: string
+                is_in_catalog:
+                  type: boolean
+                sequence:
+                  type: integer
+                topic_id:
+                  type: integer
+        400:
+          description: Bad Request
+        401: 
+          description: Unauthorized
+            
+  /standards/{standardId}/:
+    get:
+      parameters:
+        - $ref: "#/parameters/standardId"      
+      description: Get a 'Standard' object.
+      responses:
+        200:
+          description: OK
+          schema:
+            title: Standard
+            type: object
+            properties:
+                id:
+                  type: integer
+                timestamp:
+                  type: string
+                  format: dateTime
+                title:
+                  type: string
+                description:
+                  type: string
+                is_in_catalog:
+                  type: boolean
+                sequence:
+                  type: integer
+                topic_id:
+                  type: integer
+                  
+    put:
+      parameters:
+        - $ref: "#/parameters/standardId"   
+      description: Update a 'Standard' object.
+      responses:
+        200:
+          description: OK
+          schema:
+            title: Standard
+            type: object
+            properties:
+                id:
+                  type: integer
+                timestamp:
+                  type: string
+                  format: dateTime
+                title:
+                  type: string
+                description:
+                  type: string
+                is_in_catalog:
+                  type: boolean
+                sequence:
+                  type: integer
+                topic_id:
+                  type: integer
+        400:
+          description: Bad Request
+        401: 
+          description: Unauthorized
+          
+    delete:
+      parameters:
+        - $ref: "#/parameters/standardId"   
+      description: test
+      responses:
+        204:
+          description: No Content
+        401: 
+          description: Unauthorized
+    
+    
+    
+              
