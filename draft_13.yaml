@@ -1,0 +1,623 @@
+swagger: '2.0'
+
+info:
+  version: "1.0.0"
+  title: EHelse Referansekatalog API
+
+
+
+host: refkat.eu
+basePath: /v1
+schemes:
+  - https
+produces:
+  - application/json
+consumes:
+  - application/json
+  
+tags:
+  - name: Topic
+    description: TODO
+  - name: Page
+    description:  TODO
+  - name: Document
+    description:  TODO
+  - name: Field
+    description:  TODO
+  - name: TargetGroup
+    description:  TODO
+  - name: Link
+    description:  TODO
+  - name: LinkCategory
+    description:  TODO 
+    
+  
+
+  
+parameters:
+  documentId:
+    name: documentId
+    in: path
+    description: ID of 'Document' 
+    required: true
+    type: integer
+  topicId:
+    name: topicId
+    in: path
+    description: ID of 'Topic' 
+    required: true
+    type: integer
+  fieldId:
+    name: fieldId
+    in: path
+    description: ID of 'Field' 
+    required: true
+    type: integer
+  targetGroupId:
+    name: targetGroupId
+    in: path
+    description: ID of 'TargetGroup' 
+    required: true
+    type: integer
+  linkCategoryId:
+    name: linkCategoryId
+    in: path
+    description: ID of 'LinkCategory' 
+    required: true
+    type: integer
+
+
+paths:
+  ## documents
+  /documents/:
+    get:
+      tags: 
+        - Document
+      description: Gets `Documents` objects.
+      responses:
+        200:
+          description: OK
+          schema:
+            title: Documents
+            type: array
+            items:
+              $ref: '#/definitions/Document' 
+    post:
+      tags: 
+        - Document
+      description: Creates a new 'Document' object.
+      parameters:
+        - name: document
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Document'
+      responses: 
+        201:
+          description: Created
+          schema:
+            $ref: '#/definitions/Document' 
+        400:
+          description: Bad Request
+        401: 
+          description: Unauthorized
+            
+  /documents/{documentId}/:
+    get:
+      tags: 
+        - Document
+      parameters:
+        - $ref: "#/parameters/documentId"      
+      description: Get a 'Document' object.
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Document' 
+    put:
+      tags: 
+        - Document
+      parameters:
+        - $ref: "#/parameters/documentId"  
+        - name: document
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Document'
+      description: Update a 'Document' object.
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Document' 
+        400:
+          description: Bad Request
+        401: 
+          description: Unauthorized
+    delete:
+      tags: 
+        - Document
+      parameters:
+        - $ref: "#/parameters/documentId"   
+      description: test
+      responses:
+        204:
+          description: No Content
+        401: 
+          description: Unauthorized
+          
+         
+  /fields/:
+    get:
+      tags:
+        - Field
+      description: Gets 'Field' objects.
+      responses:
+        200:
+          description: OK
+          schema:
+            title: Fields
+            type: array
+            items:
+              $ref: '#/definitions/Field' 
+            
+    post:
+      tags: 
+        - Field
+      description: Creates a new 'Field' object.
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+           $ref: '#/definitions/Field'
+      responses: 
+        201:
+          description: Created
+          schema:
+            $ref: '#/definitions/Field' 
+        400:
+          description: Bad Request
+        401: 
+          description: Unauthorized
+  
+  /fields/{fieldId}/:
+    get:
+      tags: 
+        - Page
+      parameters:
+        - $ref: "#/parameters/fieldId"      
+      description: Get a 'Field' object.
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Field'
+    put:
+      tags: 
+        - Page
+      parameters:
+        - $ref: "#/parameters/fieldId"   
+        - name: page
+          in: body
+          required: true
+          schema:
+           $ref: '#/definitions/Field'
+      description: Update a 'Field' object.
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Field' 
+        400:
+          description: Bad Request
+        401: 
+          description: Unauthorized
+    delete:
+      tags: 
+        - Page
+      parameters:
+        - $ref: "#/parameters/fieldId"   
+      description: Deletes a 'Field' object.
+      responses:
+        204:
+          description: No Content
+        401: 
+          description: Unauthorized
+    
+    
+  
+  
+    
+  /topics/:
+    get:
+      tags:
+        - Topic
+      description: Gets 'Topic' objects.
+      responses:
+        200:
+          description: OK
+          schema:
+            title: Topics
+            type: array
+            items:
+              $ref: '#/definitions/Topic' 
+            
+    post:
+      tags: 
+        - Topic
+      description: Creates a new 'Topic' object.
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+           $ref: '#/definitions/Topic'
+      responses: 
+        201:
+          description: Created
+          schema:
+            $ref: '#/definitions/Topic' 
+        400:
+          description: Bad Request
+        401: 
+          description: Unauthorized
+  
+  /topics/{topicId}/:
+    get:
+      tags: 
+        - Topic
+      parameters:
+        - $ref: "#/parameters/topicId"      
+      description: Get a 'Topic' object.
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Topic'
+    put:
+      tags: 
+        - Topic
+      parameters:
+        - $ref: "#/parameters/topicId"   
+        - name: body
+          in: body
+          required: true
+          schema:
+           $ref: '#/definitions/Topic'
+      description: Update a 'Topic' object.
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Topic' 
+        400:
+          description: Bad Request
+        401: 
+          description: Unauthorized
+    delete:
+      tags: 
+        - Page
+      parameters:
+        - $ref: "#/parameters/topicId"   
+      description: Deletes a 'Topic' object.
+      responses:
+        204:
+          description: No Content
+        401: 
+          description: Unauthorized
+       
+       
+            
+  /target_groups/:
+    get:
+      tags:
+        - TargetGroup
+      description: Gets 'TargetGroup' objects.
+      responses:
+        200:
+          description: OK
+          schema:
+            title: Topics
+            type: array
+            items:
+              $ref: '#/definitions/TargetGroup' 
+            
+    post:
+      tags: 
+        - TargetGroup
+      description: Creates a new 'TargetGroup' object.
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+           $ref: '#/definitions/TargetGroup'
+      responses: 
+        201:
+          description: Created
+          schema:
+            $ref: '#/definitions/TargetGroup' 
+        400:
+          description: Bad Request
+        401: 
+          description: Unauthorized
+  
+  /target_groups/{targetGroupId}/:
+    get:
+      tags: 
+        - TargetGroup
+      parameters:
+        - $ref: "#/parameters/targetGroupId"      
+      description: Get a 'TargetGroup' object.
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/TargetGroup'
+    put:
+      tags: 
+        - TargetGroup
+      parameters:
+        - $ref: "#/parameters/targetGroupId"   
+        - name: body
+          in: body
+          required: true
+          schema:
+           $ref: '#/definitions/TargetGroup'
+      description: Update a 'TargetGroup' object.
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/TargetGroup' 
+        400:
+          description: Bad Request
+        401: 
+          description: Unauthorized
+    delete:
+      tags: 
+        - TargetGroup
+      parameters:
+        - $ref: "#/parameters/targetGroupId"   
+      description: Deletes a 'TargetGroup' object.
+      responses:
+        204:
+          description: No Content
+        401: 
+          description: Unauthorized
+       
+ 
+             
+  /link_Categories/:
+    get:
+      tags:
+        - LinkCategory
+      description: Gets 'LinkCategory' objects.
+      responses:
+        200:
+          description: OK
+          schema:
+            title: Topics
+            type: array
+            items:
+              $ref: '#/definitions/LinkCategory' 
+            
+    post:
+      tags: 
+        - TargetGroup
+      description: Creates a new 'LinkCategory' object.
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+           $ref: '#/definitions/LinkCategory'
+      responses: 
+        201:
+          description: Created
+          schema:
+            $ref: '#/definitions/LinkCategory' 
+        400:
+          description: Bad Request
+        401: 
+          description: Unauthorized
+  
+  /link_Categories/{linkCategoryId}/:
+    get:
+      tags: 
+        - LinkCategory
+      parameters:
+        - $ref: "#/parameters/linkCategoryId"      
+      description: Get a 'LinkCategory' object.
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/LinkCategory'
+    put:
+      tags: 
+        - LinkCategory
+      parameters:
+        - $ref: "#/parameters/linkCategoryId"   
+        - name: body
+          in: body
+          required: true
+          schema:
+           $ref: '#/definitions/LinkCategory'
+      description: Update a 'LinkCategory' object.
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/LinkCategory' 
+        400:
+          description: Bad Request
+        401: 
+          description: Unauthorized
+    delete:
+      tags: 
+        - LinkCategory
+      parameters:
+        - $ref: "#/parameters/linkCategoryId"   
+      description: Deletes a 'LinkCategory' object.
+      responses:
+        204:
+          description: No Content
+        401: 
+          description: Unauthorized
+       
+       
+       
+
+ 
+######################
+  
+          
+definitions:
+
+  Document:
+    type: object
+    properties:
+      id:
+        type: integer
+      timestamp:
+        type: string
+        format: dateTime
+      title:
+        type: string
+      description:
+        type: string
+      isInCatalog:
+        type: boolean
+      sequence:
+        type: integer
+      topicId:
+        type: integer
+      documentType:
+        type: string
+      targetGroups:
+        $ref: "#/definitions/DocumentTargetGroup"
+      links:
+        type: array
+        items: 
+          type: object
+          properties:
+            linkCategory: 
+              $ref: '#/definitions/LinkCategory'
+            links: 
+              type: array
+              items:
+                $ref: '#/definitions/Link'
+            
+      
+          
+ 
+  Topic:
+    type: object
+    properties:
+      id: 
+        type: integer
+      timestamp: 
+        type: string
+        format: dateTime
+      title:
+        type: string
+      description:
+        type: string
+      number:
+        type: string
+      isInCatalog:
+        type: boolean
+      sequense: 
+        type: integer
+      parent:
+        type: integer 
+      children:
+        type: array
+        items:
+          $ref: '#/definitions/Topic' 
+      documents:
+        type: array
+        items:
+          $ref: '#/definitions/Document'
+
+        
+  Field:
+    type: object
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      description:
+        type: string
+      sequence:
+        type: integer
+      mandatory:
+        type: boolean
+      documentType:
+        type: integer
+
+        
+  TargetGroup:
+    type: object
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      description:
+        type: integer
+     
+        
+  DocumentTargetGroup:
+    type: object
+    properties:
+      id:
+        type: integer
+      description:
+        type: integer
+      action:
+        type: string
+      deadline:
+        type: string
+      mandatory:
+        type: string
+      description:
+        type: string
+      targetGroup:
+        $ref: '#/definitions/TargetGroup'
+        
+    
+  Link:
+    type: object
+    properties:
+      id:
+        type: integer
+      text:
+        type: string
+      description:
+        type: string
+      url:
+        type: string
+        format: url
+      linkCategory:
+        $ref: '#/definitions/LinkCategory'
+      document:
+        $ref: '#/definitions/Document'
+        
+        
+  LinkCategory:
+    type: object
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      description:
+        type: string
+
+    
+    
+              
