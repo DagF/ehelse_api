@@ -30,6 +30,8 @@ tags:
     description:  TODO
   - name: LinkCategory
     description:  TODO 
+  - name: User
+    description: TODO
     
   
 
@@ -44,7 +46,7 @@ parameters:
   topicId:
     name: topicId
     in: path
-    description: ID of 'Topic' 
+    description: ID of 'Topic' d
     required: true
     type: integer
   fieldId:
@@ -63,6 +65,12 @@ parameters:
     name: linkCategoryId
     in: path
     description: ID of 'LinkCategory' 
+    required: true
+    type: integer
+  userId:
+    name: userId
+    in: path
+    description: ID of 'User' 
     required: true
     type: integer
 
@@ -114,26 +122,6 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/Document' 
-    put:
-      tags: 
-        - Document
-      parameters:
-        - $ref: "#/parameters/documentId"  
-        - name: document
-          in: body
-          required: true
-          schema:
-            $ref: '#/definitions/Document'
-      description: Update a 'Document' object.
-      responses:
-        200:
-          description: OK
-          schema:
-            $ref: '#/definitions/Document' 
-        400:
-          description: Bad Request
-        401: 
-          description: Unauthorized
     delete:
       tags: 
         - Document
@@ -275,26 +263,6 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/Topic'
-    put:
-      tags: 
-        - Topic
-      parameters:
-        - $ref: "#/parameters/topicId"   
-        - name: body
-          in: body
-          required: true
-          schema:
-           $ref: '#/definitions/Topic'
-      description: Update a 'Topic' object.
-      responses:
-        200:
-          description: OK
-          schema:
-            $ref: '#/definitions/Topic' 
-        400:
-          description: Bad Request
-        401: 
-          description: Unauthorized
     delete:
       tags: 
         - Page
@@ -468,13 +436,141 @@ paths:
           description: Unauthorized
        
        
-       
+  /users/:
+    get:
+      tags:
+        - User
+      description: Gets 'User' objects.
+      responses:
+        200:
+          description: OK
+          schema:
+            title: Users
+            type: array
+            items:
+              $ref: '#/definitions/User' 
+            
+    post:
+      tags: 
+        - User
+      description: Creates a new 'User' object.
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+           $ref: '#/definitions/User'
+      responses: 
+        201:
+          description: Created
+          schema:
+            $ref: '#/definitions/User' 
+        400:
+          description: Bad Request
+        401: 
+          description: Unauthorized
+  
+  /users/reset_password/:
+    put:
+      tags: 
+        - User
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+           $ref: '#/definitions/ResetPassword'
+      description: Reset a users password
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/User' 
+        400:
+          description: Bad Request
+        401: 
+          description: Unauthorized
+    
+  /users/{userId}/:
+    get:
+      tags: 
+        - User
+      parameters:
+        - $ref: "#/parameters/userId"      
+      description: Get a 'User' object.
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/User'
+    put:
+      tags: 
+        - User
+      parameters:
+        - $ref: "#/parameters/userId"   
+        - name: body
+          in: body
+          required: true
+          schema:
+           $ref: '#/definitions/User'
+      description: Update a 'User' object.
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/User' 
+        400:
+          description: Bad Request
+        401: 
+          description: Unauthorized
+    delete:
+      tags: 
+        - User
+      parameters:
+        - $ref: "#/parameters/userId"   
+      description: Deletes a 'User' object.
+      responses:
+        204:
+          description: No Content
+        401: 
+          description: Unauthorized
+          
+  /users/{userId}/password/:
+    put:
+      tags: 
+        - User
+      parameters:
+        - $ref: "#/parameters/userId"   
+        - name: body
+          in: body
+          required: true
+          schema:
+           $ref: '#/definitions/Password'
+      description: Update a users password object.
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/User' 
+        400:
+          description: Bad Request
+        401: 
+          description: Unauthorized
 
  
 ######################
   
           
 definitions:
+
+  DocumentType:
+    type: object
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+    
 
   Document:
     type: object
@@ -488,14 +584,14 @@ definitions:
         type: string
       description:
         type: string
-      isInCatalog:
-        type: boolean
+      status:
+        type: string
       sequence:
         type: integer
       topicId:
         type: integer
       documentType:
-        type: string
+        $ref: "#/definitions/DocumentType"
       targetGroups:
         $ref: "#/definitions/DocumentTargetGroup"
       links:
@@ -527,8 +623,6 @@ definitions:
         type: string
       number:
         type: string
-      isInCatalog:
-        type: boolean
       sequense: 
         type: integer
       parent:
@@ -617,6 +711,38 @@ definitions:
         type: string
       description:
         type: string
+        
+  User:
+    type: object
+    properties:
+      id:
+        type: integer
+      username:
+        type: string
+      name:
+        type: string
+      email:
+        type: string
+        format: email
+      profileImage:
+        type: string
+        format: url
+        
+  Password:
+    type: object
+    properties:
+      password:
+        type: string
+  
+  ResetPassword:
+    type: object
+    properties:
+      password:
+        type: string  
+      resetToken:
+        type: string  
+      resetRow:
+        type: int  
 
     
     
