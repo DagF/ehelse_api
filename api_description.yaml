@@ -277,7 +277,7 @@ paths:
        
        
             
-  /target_groups/:
+  /target-groups/:
     get:
       tags:
         - TargetGroup
@@ -311,7 +311,7 @@ paths:
         401: 
           description: Unauthorized
   
-  /target_groups/{targetGroupId}/:
+  /target-groups/{targetGroupId}/:
     get:
       tags: 
         - TargetGroup
@@ -357,7 +357,7 @@ paths:
        
  
              
-  /link_Categories/:
+  /link-categories/:
     get:
       tags:
         - LinkCategory
@@ -370,7 +370,6 @@ paths:
             type: array
             items:
               $ref: '#/definitions/LinkCategory' 
-            
     post:
       tags: 
         - TargetGroup
@@ -391,7 +390,7 @@ paths:
         401: 
           description: Unauthorized
   
-  /link_Categories/{linkCategoryId}/:
+  /link-categories/{linkCategoryId}/:
     get:
       tags: 
         - LinkCategory
@@ -470,7 +469,24 @@ paths:
         401: 
           description: Unauthorized
   
-  /users/reset_password/:
+  /users/login/:
+    get:
+      tags:
+        - User
+      description: Checks if login details are correct.
+      responses:
+        200:
+          description: OK
+          schema:
+            title: Users
+            type: array
+            items:
+              $ref: '#/definitions/User' 
+        401: 
+          description: Unauthorized
+            
+            
+  /users/reset-password/:
     put:
       tags: 
         - User
@@ -742,8 +758,4 @@ definitions:
       resetToken:
         type: string  
       resetRow:
-        type: int  
-
-    
-    
-              
+        type: integer  
