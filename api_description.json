@@ -47,6 +47,22 @@
         {
             "name": "User",
             "description": "TODO"
+        },
+        {
+            "name": "DocumentType",
+            "description": "TODO"
+        },
+        {
+            "name": "Mandatory",
+            "description": "TODO"
+        },
+        {
+            "name": "Action",
+            "description": "TODO"
+        },
+        {
+            "name": "Status",
+            "description": "TODO"
         }
     ],
     "parameters": {
@@ -89,6 +105,34 @@
             "name": "userId",
             "in": "path",
             "description": "ID of 'User'",
+            "required": true,
+            "type": "integer"
+        },
+        "documentTypeId": {
+            "name": "documentTypeId",
+            "in": "path",
+            "description": "ID of 'DocumentType'",
+            "required": true,
+            "type": "integer"
+        },
+        "mandatoryId": {
+            "name": "mandatoryId",
+            "in": "path",
+            "description": "ID of 'Mandatory'",
+            "required": true,
+            "type": "integer"
+        },
+        "actionId": {
+            "name": "actionId",
+            "in": "path",
+            "description": "ID of 'Action'",
+            "required": true,
+            "type": "integer"
+        },
+        "statusId": {
+            "name": "statusId",
+            "in": "path",
+            "description": "ID of 'Status'",
             "required": true,
             "type": "integer"
         }
@@ -541,7 +585,7 @@
             },
             "post": {
                 "tags": [
-                    "TargetGroup"
+                    "LinkCategory"
                 ],
                 "description": "Creates a new 'LinkCategory' object.",
                 "parameters": [
@@ -633,6 +677,498 @@
                     }
                 ],
                 "description": "Deletes a 'LinkCategory' object.",
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+        },
+        "/document-type/": {
+            "get": {
+                "tags": [
+                    "DocumentType"
+                ],
+                "description": "Gets 'DocumentType' objects.",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "title": "documentTypes",
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/DocumentType"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "DocumentType"
+                ],
+                "description": "Creates a new 'DocumentType' object.",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/DocumentType"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/DocumentType"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+        },
+        "/document-type/{documentTypeId}/": {
+            "get": {
+                "tags": [
+                    "DocumentType"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/documentTypeId"
+                    }
+                ],
+                "description": "Get a 'DocumentType' object.",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/DocumentType"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "DocumentType"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/documentTypeId"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/DocumentType"
+                        }
+                    }
+                ],
+                "description": "Update a 'DocumentType' object.",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/DocumentType"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "DocumentType"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/documentTypeId"
+                    }
+                ],
+                "description": "Deletes a 'DocumentType' object.",
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+        },
+        "/mandatory/": {
+            "get": {
+                "tags": [
+                    "Mandatory"
+                ],
+                "description": "Gets 'Mandatory' objects.",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "title": "mandatory",
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Mandatory"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Mandatory"
+                ],
+                "description": "Creates a new 'Mandatory' object.",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Mandatory"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/Mandatory"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+        },
+        "/mandatory/{mandatoryId}/": {
+            "get": {
+                "tags": [
+                    "Mandatory"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/mandatoryId"
+                    }
+                ],
+                "description": "Get a 'Mandatory' object.",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Mandatory"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Mandatory"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/mandatoryId"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Mandatory"
+                        }
+                    }
+                ],
+                "description": "Update a 'Mandatory' object.",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Mandatory"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Mandatory"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/mandatoryId"
+                    }
+                ],
+                "description": "Deletes a 'Mandatory' object.",
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+        },
+        "/status/": {
+            "get": {
+                "tags": [
+                    "Status"
+                ],
+                "description": "Gets 'Status' objects.",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "title": "mandatory",
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Status"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Status"
+                ],
+                "description": "Creates a new 'Status' object.",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Status"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/Status"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+        },
+        "/status/{statusId}/": {
+            "get": {
+                "tags": [
+                    "Status"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/statusId"
+                    }
+                ],
+                "description": "Get a 'Status' object.",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Status"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Status"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/statusId"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Status"
+                        }
+                    }
+                ],
+                "description": "Update a 'Status' object.",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Status"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Status"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/statusId"
+                    }
+                ],
+                "description": "Deletes a 'Status' object.",
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+        },
+        "/action/": {
+            "get": {
+                "tags": [
+                    "Action"
+                ],
+                "description": "Gets 'Action' objects.",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "title": "actions",
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Action"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Action"
+                ],
+                "description": "Creates a new 'Action' object.",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Action"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/Action"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+        },
+        "/action/{actionId}/": {
+            "get": {
+                "tags": [
+                    "Action"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/actionId"
+                    }
+                ],
+                "description": "Get a 'Action' object.",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Action"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Action"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/actionId"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Action"
+                        }
+                    }
+                ],
+                "description": "Update a 'Action' object.",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Action"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Action"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/actionId"
+                    }
+                ],
+                "description": "Deletes a 'Action' object.",
                 "responses": {
                     "204": {
                         "description": "No Content"
@@ -869,6 +1405,39 @@
                 }
             }
         },
+        "Mandatory": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "Action": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "Status": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
         "Document": {
             "type": "object",
             "properties": {
@@ -897,9 +1466,6 @@
                 "documentType": {
                     "$ref": "#/definitions/DocumentType"
                 },
-                "targetGroups": {
-                    "$ref": "#/definitions/DocumentTargetGroup"
-                },
                 "links": {
                     "type": "array",
                     "items": {
@@ -915,6 +1481,18 @@
                                 }
                             }
                         }
+                    }
+                },
+                "fields": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Field"
+                    }
+                },
+                "targetGroups": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/DocumentTargetGroup"
                     }
                 }
             }
