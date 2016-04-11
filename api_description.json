@@ -1454,8 +1454,8 @@
                 "description": {
                     "type": "string"
                 },
-                "status": {
-                    "type": "string"
+                "statusId": {
+                    "type": "integer"
                 },
                 "sequence": {
                     "type": "integer"
@@ -1463,30 +1463,19 @@
                 "topicId": {
                     "type": "integer"
                 },
-                "documentType": {
-                    "$ref": "#/definitions/DocumentType"
+                "documentTypeId": {
+                    "type": "integer"
                 },
                 "links": {
                     "type": "array",
                     "items": {
-                        "type": "object",
-                        "properties": {
-                            "linkCategory": {
-                                "$ref": "#/definitions/LinkCategory"
-                            },
-                            "links": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/Link"
-                                }
-                            }
-                        }
+                        "$ref": "#/definitions/Link"
                     }
                 },
                 "fields": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/Field"
+                        "$ref": "#/definitions/FieldValue"
                     }
                 },
                 "targetGroups": {
@@ -1559,6 +1548,17 @@
                 }
             }
         },
+        "FieldValue": {
+            "type": "object",
+            "properties": {
+                "fieldId": {
+                    "type": "integer"
+                },
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
         "TargetGroup": {
             "type": "object",
             "properties": {
@@ -1582,17 +1582,17 @@
                 "description": {
                     "type": "string"
                 },
-                "action": {
-                    "type": "string"
+                "actionId": {
+                    "type": "integer"
                 },
                 "deadline": {
                     "type": "string"
                 },
-                "mandatory": {
-                    "type": "string"
+                "mandatoryId": {
+                    "type": "integer"
                 },
-                "targetGroup": {
-                    "$ref": "#/definitions/TargetGroup"
+                "targetGroupId": {
+                    "type": "integer"
                 }
             }
         },
@@ -1612,11 +1612,11 @@
                     "type": "string",
                     "format": "url"
                 },
-                "linkCategory": {
-                    "$ref": "#/definitions/LinkCategory"
+                "linkCategoryId": {
+                    "type": "integer"
                 },
-                "document": {
-                    "$ref": "#/definitions/Document"
+                "documentId": {
+                    "type": "integer"
                 }
             }
         },
