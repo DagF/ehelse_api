@@ -1463,6 +1463,18 @@
                 "topicId": {
                     "type": "integer"
                 },
+                "previousDocumentId": {
+                    "type": "integer"
+                },
+                "standardId": {
+                    "type": "integer"
+                },
+                "profiles": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
                 "documentTypeId": {
                     "type": "integer"
                 },
